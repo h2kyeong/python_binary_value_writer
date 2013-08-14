@@ -1,3 +1,3 @@
-gcc raw.c -o raw.o -Wall -g -c -fPIC -march=native -mtune=native -O2 -I/usr/include/python2.7 -L/usr/lib64 -lpython2.7
-gcc -shared -Wl,-soname,libraw.so -o raw.so raw.o -I/usr/include/python2.7 -L/usr/lib64 -lpython2.7
+gcc raw.c -o raw.o -std=c99 -Wall -g -c -fPIC -march=native -mtune=native -O2 -I/usr/include/python2.7 -L/usr/lib64 -lpython2.7
+gcc raw.o -o raw.so -shared -Wl,-soname,libraw.so -I/usr/include/python2.7 -L/usr/lib64 -lpython2.7
 rm raw.o
