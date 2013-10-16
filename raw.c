@@ -229,7 +229,7 @@ char const CHARSET[] = "0123456789abcdef";
 
 PyDEF bin2hex (PyARGS){
 	int ok;
-	const char* val;
+	const unsigned char* val;
 	Py_ssize_t len;
 	ok = PyArg_ParseTuple(args, "s#", &val, &len);
 	if (!ok) return 0;
@@ -241,11 +241,11 @@ PyDEF bin2hex (PyARGS){
 	}
 	// WARNING FREE MEMORY BEFORE RETURN
 	
-	const char* ival = val;
-	char* iout = out;
+	const unsigned char* ival = val;
+	unsigned char* iout = out;
 	for (Py_ssize_t i=0; i<len; ++i){
 		int c = *ival;
-		*iout = CHARSET[(c & 240) >> 4]; ++iout;
+		*iout = CHARSET[c >> 4]; ++iout;
 		*iout = CHARSET[c & 15]; ++iout;
 		++ival;
 	}
